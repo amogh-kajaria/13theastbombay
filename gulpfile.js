@@ -2,7 +2,8 @@ const gulp = require("gulp"),
   sass = require("gulp-sass")(require("sass")),
   uglify = require("gulp-uglify"),
   concat = require("gulp-concat"),
-  connect = require("gulp-connect");
+  connect = require("gulp-connect"),
+  ghPages = require("gulp-gh-pages");
 
 const jsSources = ["app/js/*.js"],
   sassSources = ["app/styles/*.scss"],
@@ -21,7 +22,7 @@ gulp.task("js", function () {
   return gulp
     .src(jsSources)
     .pipe(uglify())
-    .pipe(concat('scripts.js'))
+    .pipe(concat("scripts.js"))
     .pipe(gulp.dest(outputDir + "/scripts/"))
     .pipe(connect.reload());
 });
@@ -72,6 +73,10 @@ gulp.task("watch", function () {
   gulp.watch("app/assets/*.jpg", gulp.series("commonhtml"));
   gulp.watch("app/assets/*.mp4", gulp.series("commonhtml"));
   gulp.watch("app/assets/*.gif", gulp.series("commonhtml"));
+});
+
+gulp.task("deploy", function () {
+  return gulp.src("./dist/**/*").pipe(ghPages());
 });
 
 gulp.task(
