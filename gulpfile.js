@@ -20,8 +20,6 @@ gulp.task("scss", function () {
 gulp.task("js", function () {
   return gulp
     .src(jsSources)
-    .pipe(uglify())
-    // .pipe(concat("script.js"))
     .pipe(gulp.dest(outputDir + "/scripts/"))
     .pipe(connect.reload());
 });
@@ -48,6 +46,8 @@ gulp.task("assets", function () {
       "app/assets/*.jpg",
       "app/assets/*.mp4",
       "app/assets/*.gif",
+      "app/assets/*.ico",
+      "app/assets/*.webp",
     ])
     .pipe(gulp.dest(outputDir + "/assets/"))
     .pipe(connect.reload());
@@ -67,11 +67,13 @@ gulp.task("watch", function () {
   gulp.watch("app/styles/*.scss", gulp.series("scss"));
   gulp.watch("app/**.html", gulp.series("html"));
   gulp.watch("app/common/*.html", gulp.series("commonhtml"));
-  gulp.watch("app/assets/*.svg", gulp.series("commonhtml"));
-  gulp.watch("app/assets/*.png", gulp.series("commonhtml"));
-  gulp.watch("app/assets/*.jpg", gulp.series("commonhtml"));
-  gulp.watch("app/assets/*.mp4", gulp.series("commonhtml"));
-  gulp.watch("app/assets/*.gif", gulp.series("commonhtml"));
+  gulp.watch("app/assets/*.svg", gulp.series("assets"));
+  gulp.watch("app/assets/*.png", gulp.series("assets"));
+  gulp.watch("app/assets/*.jpg", gulp.series("assets"));
+  gulp.watch("app/assets/*.mp4", gulp.series("assets"));
+  gulp.watch("app/assets/*.gif", gulp.series("assets"));
+  gulp.watch("app/assets/*.ico", gulp.series("assets"));
+  gulp.watch("app/assets/*.webp", gulp.series("assets"));
 });
 
 gulp.task("build", gulp.series("js", "scss", "html", "commonhtml", "assets"));

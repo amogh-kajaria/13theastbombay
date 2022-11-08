@@ -1,0 +1,169 @@
+#faq {
+  padding: size-sm(48) size-sm(36) size-sm(60);
+  .heading-container {
+    max-width: 60%;
+    margin-bottom: size-sm(16);
+    .title {
+      font-size: size-sm(20);
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.25;
+      letter-spacing: normal;
+      color: $black;
+      &.pink {
+        color: $french-rose;
+      }
+    }
+  }
+  .accordion {
+    .card {
+      border: 0;
+      &:not(.more) {
+        border-bottom: solid 1px $alto;
+      }
+      &-header {
+        background: transparent;
+        padding: 0;
+        border: 0;
+        .btn-link {
+          font-size: size-sm(14);
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.43;
+          letter-spacing: normal;
+          color: $black;
+          padding: size-sm(21) size-sm(26) size-sm(21) size-sm(31);
+          position: relative;
+          border: 0;
+          &.pink {
+            font-weight: normal;
+            line-height: 1.14;
+            color: $french-rose;
+          }
+          &:focus,
+          &:hover {
+            text-decoration: none;
+            box-shadow: none;
+          }
+          &::before {
+            content: "";
+            background: url("../assets/pink-minus.svg") center/contain no-repeat;
+            height: 16px;
+            width: 16px;
+            position: absolute;
+            top: size-sm(21);
+            left: 0;
+            transition: background-image 0.5s;
+          }
+          &.collapsed::before {
+            background-image: url("../assets/pink-plus.svg");
+          }
+        }
+      }
+      &-body {
+        font-size: size-sm(14);
+        padding: 0 0 size-sm(13) size-sm(50);
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        color: $scorpion;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #faq {
+    padding: size-md(41) size-md(140) size-md(38);
+    .heading-container {
+      max-width: 50%;
+      margin-bottom: size-md(29);
+      .title {
+        font-size: size-md(25);
+      }
+    }
+    .accordion {
+      .card {
+        &-header {
+          .btn-link {
+            font-size: size-md(16);
+            padding: size-md(20) size-md(20) size-md(20) size-md(24);
+            &::before {
+              top: size-md(20);
+            }
+          }
+        }
+        &-body {
+          font-size: size-md(14);
+          padding: 0 0 size-md(20) size-md(92);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #faq {
+    padding: size-lg(84) size-lg(140) size-lg(92);
+    .heading-container {
+      max-width: 40%;
+      margin-bottom: size-lg(29);
+      .title {
+        font-size: size-lg(25);
+      }
+    }
+    .accordion {
+      padding: 0 size-lg(120);
+      .card {
+        &-header {
+          .btn-link {
+            font-size: size-lg(16);
+            padding: size-lg(20) size-lg(8) size-lg(20) size-lg(24);
+            &::before {
+              top: size-lg(20);
+            }
+          }
+        }
+        &-body {
+          font-size: size-lg(14);
+          padding: 0 0 size-lg(26) size-lg(92);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #faq {
+    padding: size-xl(97) size-xl(138) size-xl(0);
+    .heading-container {
+      max-width: 30%;
+      margin-bottom: size-xl(23);
+      .title {
+        font-size: size-xl(50);
+      }
+    }
+    .accordion {
+      padding: 0 size-xl(278);
+      .card {
+        &-header {
+          .btn-link {
+            font-size: size-xl(24);
+            padding: size-xl(30) size-xl(33);
+            &::before {
+              top: size-xl(37);
+            }
+          }
+        }
+        &-body {
+          font-size: size-xl(22);
+          padding: 0 0 size-xl(30) size-xl(138);
+        }
+      }
+    }
+  }
+}
