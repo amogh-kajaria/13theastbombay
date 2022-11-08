@@ -1,0 +1,284 @@
+.footer {
+    margin: size-sm(29) size-sm(37) size-sm(57) size-sm(36);
+    display: block;
+    justify-content: space-between;
+    .footer-main {
+      .nav-pills {
+        align-items: center;
+        .nav-item {
+          margin: 0 3.5px;
+          .nav-link {
+            font-size: size-sm(16);
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.25;
+            letter-spacing: normal;
+            text-align: left;
+            color: $black;
+            background: transparent;
+            padding: 0;
+            margin: size-sm(10) 0;          
+          }
+          &.dots {
+            height: size-sm(6);
+            width: size-sm(6);
+            background: $french-rose;
+            border-radius: 50%;
+          }
+        }
+      }
+      .contactinfo {
+        .email {
+          font-size: size-sm(16);
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.8;
+          letter-spacing: normal;
+          text-align: left;
+          color: #000000;
+          display: block;
+          margin-top: size-sm(32);
+          margin-bottom: size-sm(12);
+        }
+        .phone{
+          font-size: size-sm(16);
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.8;
+          letter-spacing: normal;
+          text-align: left;
+          color: #000000;
+          display: block;
+        }
+      }
+    }
+    .social-link{
+      margin-top:size-sm(45);
+      align-items: flex-end;
+      display: flex;
+      justify-content: center;
+      .facebook{
+        width: size-sm(12);
+        height: size-sm(22);
+      }
+      .linkedin{
+        height: size-sm(22);
+        width: size-sm(22);
+        margin: 0 size-sm(22);
+      }
+      .twitter{
+        width:size-sm(21);
+        height:size-sm(17);
+  
+      }
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .footer {
+      margin: size-md(24) size-md(139) size-md(50) size-md(139);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .footer-main {
+        .nav-pills {
+          align-items: center;
+          .nav-item {
+            margin: 0 3.5px;
+            .nav-link {
+              font-size: size-md(14);
+              font-weight: 500;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.25;
+              letter-spacing: normal;
+              text-align: left;
+              color: $black;
+              background: transparent;
+              padding: 0;
+              margin: 0;  
+              // &.active {
+              //   font-weight: bold;
+              //   color: $black;
+              // }
+            }
+            &.dots {
+              height: size-md(5);
+              width: size-md(5);
+              background: $french-rose;
+              border-radius: 50%;
+            }
+          }
+        }
+        .contactinfo {
+          .email {
+            font-size: size-md(13);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.8;
+            letter-spacing: normal;
+            text-align: left;
+            color: #000000;
+            display: block;
+            margin-top: size-md(20);
+            margin-bottom: size-md(11);
+          }
+          .phone{
+            font-size: size-md(13);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.8;
+            letter-spacing: normal;
+            text-align: left;
+            color: #000000;
+            display: block;
+          }
+        }
+      }
+      .social-link{
+        margin-top: 0;
+        .facebook{
+          width: size-md(12);
+          height: size-md(21);
+        }
+        .linkedin{
+          height: size-md(21);
+          width: size-md(21);
+          margin: 0 size-md(22);
+        }
+        .twitter{
+          width:size-md(21);
+          height:size-md(17);
+    
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 992px) {
+    .footer {
+      margin: size-lg(54) size-lg(138) size-lg(63) size-lg(139);
+      display: flex;
+      justify-content: space-between;
+      .footer-main {
+        .nav-pills {
+          align-items: center;
+          .nav-item {
+            margin: 0 size-lg(9.5);
+            .nav-link {
+              font-size: size-lg(14);
+              font-weight: 500;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.25;
+              letter-spacing: normal;
+              text-align: left;
+              color: $black;
+              background: transparent;
+              padding: 0;
+             
+            }
+            &.dots {
+              height: size-lg(5);
+              width: size-lg(5);
+              background: $french-rose;
+              border-radius: 50%;
+            }
+          }
+        }
+        .contactinfo {
+          .email {
+            font-size: size-lg(13);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.8;
+            letter-spacing: normal;
+            text-align: left;
+            color: #000000;
+            display: block;
+            margin-top: size-lg(30);
+            margin-bottom: size-lg(12);
+          }
+          .phone{
+            font-size: size-lg(13);
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.8;
+            letter-spacing: normal;
+            text-align: left;
+            color: #000000;
+            display: block;
+          }
+        }
+      }
+      .social-link{
+        .facebook{
+          width: size-lg(11);
+          height: size-lg(20);
+        }
+        .linkedin{
+          height: size-lg(20);
+          width: size-lg(20);
+          margin: 0 size-lg(40);
+        }
+        .twitter{
+          width:size-lg(21);
+          height:size-lg(17);
+    
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 1200px) {
+    .footer {
+      margin: size-xl(75) size-xl(140) size-xl(95) size-xl(140);
+      .footer-main {
+        .nav-pills {
+          .nav-item {
+            margin: 0 size-xl(12);
+            .nav-link {
+              font-size: size-xl(22);
+              padding: 0;
+            }
+            &.dots {
+              height: size-xl(8);
+              width: size-xl(8);
+            }
+          }
+        }
+        .contactinfo {
+          .email {
+            font-size: size-xl(20);
+            margin-top: size-xl(35);
+            margin-bottom: size-xl(16);
+          }
+          .phone{
+            font-size: size-xl(20);
+          }
+        }
+      }
+      .social-link{
+        .facebook{
+          width: size-xl(17);
+          height: size-xl(32);
+        }
+        .linkedin{
+          height: size-xl(32);
+          width: size-xl(32);
+          margin: 0 size-xl(62);
+        }
+        .twitter{
+          width:size-xl(31);
+          height:size-xl(25);
+    
+        }
+      }
+    }
+  }
+  

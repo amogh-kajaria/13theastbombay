@@ -1,0 +1,15 @@
+@function size-sm($target) {
+  @return calc((calc($target / 3.75)) * 1rem);
+}
+
+@function size-md($target) {
+  @return calc((calc($target / 7.68)) * 1rem);
+}
+
+@function size-lg($target) {
+  @return calc((calc($target / 9.92)) * 1rem);
+}
+
+@function size-xl($target) {
+  @return calc((calc($target / 19.2)) * 1rem);
+}

@@ -1,0 +1,235 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999999;
+    padding: size-sm(36) 0;
+    flex-direction: row-reverse;
+    background-color: $port-gore;
+    .clear-fix {
+      margin-right: size-sm(36);
+      width: size-sm(22);
+    }
+    .navbar-brand {
+      .logo {
+        height: size-sm(27);
+        width: size-sm(118);
+        object-position: center;
+        object-fit: contain;
+      }
+    }
+    #navbarNav {
+      padding: 0;
+      justify-content: flex-end;
+      background: $port-gore;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      .navbar-nav {
+        margin: size-sm(40) 0;
+        .nav-item {
+          display: flex;
+          align-items: center;
+          padding: size-sm(19.5) 0;
+          margin: 0 size-sm(36);
+          &:not(:first-child):not(:last-child) {
+            border-top: 0.3px solid $white;
+          }
+          .nav-link {
+            font-size: size-sm(16);
+            color: white;
+          }
+          .contact-btn {
+            border: solid 1px #ef5e8c;
+            padding: size-sm(19) 0;
+            text-align: center;
+            width: 100%;
+            white-space: nowrap;
+            font-size: size-sm(14);
+            border-radius: 7px;
+            color: #ef5e8c;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .navbar-toggler {
+      margin-left: size-sm(36);
+      width: size-sm(22);
+      height: size-sm(20);
+      position: relative;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: 0.5s ease-in-out;
+      -moz-transition: 0.5s ease-in-out;
+      -o-transition: 0.5s ease-in-out;
+      transition: 0.5s ease-in-out;
+      .toggler-icon {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: $white;
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: 0.25s ease-in-out;
+        -moz-transition: 0.25s ease-in-out;
+        -o-transition: 0.25s ease-in-out;
+        transition: 0.25s ease-in-out;
+        &:nth-child(1) {
+          top: 0px;
+          -webkit-transform-origin: left center;
+          -moz-transform-origin: left center;
+          -o-transform-origin: left center;
+          transform-origin: left center;
+        }
+        &:nth-child(2) {
+          width: 63.63%;
+          top: 9px;
+          -webkit-transform-origin: left center;
+          -moz-transform-origin: left center;
+          -o-transform-origin: left center;
+          transform-origin: left center;
+        }
+        &:nth-child(3) {
+          top: 18px;
+          -webkit-transform-origin: left center;
+          -moz-transform-origin: left center;
+          -o-transform-origin: left center;
+          transform-origin: left center;
+        }
+      }
+      &:not(.collapsed) {
+        .toggler-icon {
+          &:nth-child(1) {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            top: 0px;
+            left: 0px;
+          }
+          &:nth-child(2) {
+            width: 0%;
+            opacity: 0;
+          }
+          &:nth-child(3) {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            top: 16px;
+            left: 0px;
+          }
+        }
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .navbar {
+      padding: size-md(36) 0;
+      .clear-fix {
+        margin-right: size-md(140);
+        width: size-md(22);
+      }
+      .navbar-brand {
+        .logo {
+          height: size-md(32);
+          width: size-md(138);
+        }
+      }
+      #navbarNav {
+        .navbar-nav {
+          margin: size-md(51) 0;
+          .nav-item {
+            padding: size-md(19.5) 0;
+            margin: 0 size-md(140);
+            .nav-link {
+              font-size: size-md(16);
+            }
+            .contact-btn {
+              padding: size-md(19) size-md(115);
+              font-size: size-md(14);
+              width: unset;
+              margin: auto;
+            }
+          }
+        }
+      }
+      .navbar-toggler {
+        margin-left: size-md(140);
+        width: size-md(22);
+        height: size-md(20);
+      }
+    }
+  }
+  @media only screen and (min-width: 992px) {
+    .navbar {
+      padding: size-lg(25) size-lg(138);
+      flex-direction: row;
+      .navbar-brand {
+        .logo {
+          height: size-lg(32);
+          width: size-lg(138);
+        }
+      }
+      #navbarNav {
+        background-color: transparent;
+        box-shadow: none;
+        .navbar-nav {
+          margin: 0;
+          .nav-item {
+            padding: 0;
+            margin: 0 size-lg(11) 0 0;
+            border: none !important;
+            &:last-child {
+              margin-right: 0;
+            }
+            .nav-link {
+              font-size: size-lg(14);
+            }
+            .contact-btn {
+              padding: size-lg(13) size-lg(29);
+              font-size: size-lg(14);
+              margin: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 1200px) {
+    .navbar {
+      padding: size-xl(37) size-xl(140);
+      .navbar-brand {
+        .logo {
+          height: size-xl(47);
+          width: size-xl(206);
+        }
+      }
+      #navbarNav {
+        .navbar-nav {
+          .nav-item {
+            margin: 0 size-xl(54) 0 0;
+            .nav-link {
+              font-size: size-xl(22);
+            }
+            .contact-btn {
+              padding: size-xl(20) size-xl(43);
+              font-size: size-xl(22);
+            }
+          }
+        }
+      }
+    }
+  }
+  

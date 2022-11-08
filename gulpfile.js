@@ -21,7 +21,7 @@ gulp.task("js", function () {
   return gulp
     .src(jsSources)
     .pipe(uglify())
-    .pipe(concat("scripts.js"))
+    // .pipe(concat("script.js"))
     .pipe(gulp.dest(outputDir + "/scripts/"))
     .pipe(connect.reload());
 });
