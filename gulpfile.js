@@ -74,6 +74,8 @@ gulp.task("watch", function () {
   gulp.watch("app/assets/*.gif", gulp.series("commonhtml"));
 });
 
+gulp.task("build", gulp.series("js", "scss", "html", "commonhtml", "assets"));
+
 gulp.task(
   "default",
   gulp.series(
