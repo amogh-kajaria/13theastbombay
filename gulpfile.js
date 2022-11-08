@@ -2,8 +2,7 @@ const gulp = require("gulp"),
   sass = require("gulp-sass")(require("sass")),
   uglify = require("gulp-uglify"),
   concat = require("gulp-concat"),
-  connect = require("gulp-connect"),
-  ghPages = require("gulp-gh-pages");
+  connect = require("gulp-connect");
 
 const jsSources = ["app/js/*.js"],
   sassSources = ["app/styles/*.scss"],
@@ -73,10 +72,6 @@ gulp.task("watch", function () {
   gulp.watch("app/assets/*.jpg", gulp.series("commonhtml"));
   gulp.watch("app/assets/*.mp4", gulp.series("commonhtml"));
   gulp.watch("app/assets/*.gif", gulp.series("commonhtml"));
-});
-
-gulp.task("deploy", function () {
-  return gulp.src("./dist/**/*").pipe(ghPages());
 });
 
 gulp.task(
