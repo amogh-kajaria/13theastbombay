@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head id="includes"></head>
 
-<head id="includes"></head>
-
-<body>
+  <body>
     <header></header>
     <main class="container-xl">
-        <h1>Gallery</h1>
-        <div id="nanogallery2" data-nanogallery2='{
+      <h1>Gallery</h1>
+      <!-- <div id="nanogallery2" data-nanogallery2='{
             "galleryMosaic" : [
               { "w": 2, "h": 2, "c": 1, "r": 1 },
               { "w": 1, "h": 1, "c": 3, "r": 1 },
@@ -191,14 +190,219 @@
             <a href="https://scontent.fbom19-3.fna.fbcdn.net/v/t1.18169-9/1929273_66013032832_7272_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=wXTTUzLDm28AX-RSNby&_nc_ht=scontent.fbom19-3.fna&oh=00_AfBKEfqX6xlSJaZKJpC7nITF-62pToYHVpseaYrbGmkxNQ&oe=63944907"
                 data-ngThumb="https://scontent.fbom19-3.fna.fbcdn.net/v/t1.18169-9/1929273_66013032832_7272_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5cd70e&_nc_ohc=wXTTUzLDm28AX-RSNby&_nc_ht=scontent.fbom19-3.fna&oh=00_AfBKEfqX6xlSJaZKJpC7nITF-62pToYHVpseaYrbGmkxNQ&oe=63944907">
                 Scouts </a>
-        </div>
+        </div> -->
+      <div id="imagesContainer">
+        <!-- <img src="https://drive.google.com/u/0/uc?id=1KRBqGrcJMoLI2r5F5nNquP-Rzc2TNX0E" /> -->
+      </div>
+      <!-- <div id="my_nanogallery2" data-nanogallery2='{
+            "userID": "101622005029-ji0l1b146iml7c3julpi4oh8206ttscl.apps.googleusercontent.com",
+            "kind": "google2",
+            "google2": {
+              "clientId": "101622005029-ji0l1b146iml7c3julpi4oh8206ttscl.apps.googleusercontent.com",
+              "apiKey": "IqBbuHB1c7ydhNL6mUWcgk5M",
+              "folderId": "1qa5XfffNKvdD9ej8eqXbdQQkcFIebfxg"
+            }
+        }'></div> -->
     </main>
     <footer></footer>
-</body>
-<script src="scripts/jquery.min.js"></script>
-<script src="scripts/popper.min.js"></script>
-<script src="scripts/bootstrap.min.js"></script>
-<script src="scripts/jquery.nanogallery2.min.js"></script>
-<script src="scripts/script.js"></script>
+  </body>
+  <!-- Load the Google API Client Library for JavaScript -->
+  <script
+    src="https://apis.google.com/js/platform.js?onload=init"
+    async
+    defer
+  ></script>
+  <script
+    src="https://apis.google.com/js/client:plusone.js"
+    type="application/javascript"
+  ></script>
 
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/popper.min.js"></script>
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/jquery.nanogallery2.min.js"></script>
+  <script src="scripts/script.js"></script>
+
+  <!-- Fetch the images using the Google API Client Library for JavaScript -->
+  <!-- <script>
+    var FOLDER_ID = "1qa5XfffNKvdD9ej8eqXbdQQkcFIebfxg";
+    var CLIENT_ID =
+      "101622005029-ji0l1b146iml7c3julpi4oh8206ttscl.apps.googleusercontent.com";
+    var API_KEY = "AIzaSyDDz--unOxLYU_Mi2WtJToQ6yCOLKgEtd8";
+    // var scopeApi = [
+    //   "https://www.googleapis.com/auth/drive",
+    //   "https://www.googleapis.com/auth/drive.file",
+    //   "https://www.googleapis.com/auth/spreadsheets",
+    //   "https://www.googleapis.com/auth/drive.appdata",
+    //   "https://www.googleapis.com/auth/drive.appfolder",
+    //   "https://www.googleapis.com/auth/drive.scripts",
+    //   "https://www.googleapis.com/auth/drive.metadata",
+    //   "https://www.googleapis.com/auth/drive.readonly",
+    //   "https://www.googleapis.com/auth/drive.photos.readonly",
+    // ];
+    var scopeApi = [
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/drive.metadata.readonly",
+      "https://www.googleapis.com/auth/drive.appdata",
+      "https://www.googleapis.com/auth/drive.metadata",
+      "https://www.googleapis.com/auth/drive.photos.readonly"
+    ];
+
+    async function init() {
+      gapi.load("auth2", function () {
+        gapi.auth2
+          .init({
+            client_id:
+              "101622005029-ji0l1b146iml7c3julpi4oh8206ttscl.apps.googleusercontent.com",
+            scope: scopeApi.join(" "),
+            scopeApi: scopeApi,
+          })
+          .then(function () {
+            var auth2 = gapi.auth2.getAuthInstance();
+
+            if (!auth2.isSignedIn.get()) {
+              auth2.signIn();
+            } else {
+              var grantedScopes = auth2.currentUser.get().getGrantedScopes();
+              console.log("Granted Scopes: ", grantedScopes);
+              var accessToken = auth2.currentUser
+                .get()
+                .getAuthResponse().access_token;
+              handlePhotoApiAuthResult(accessToken);
+              console.log("Access Token: ", accessToken);
+            }
+          });
+      });
+    }
+
+    function handlePhotoApiAuthResult(accessToken) {
+      gapi.auth.authorize(
+        {
+          client_id:
+            "101622005029-ji0l1b146iml7c3julpi4oh8206ttscl.apps.googleusercontent.com",
+          scope: scopeApi,
+          immediate: false,
+        },
+        function (authResult) {
+          if (authResult && !authResult.error) {
+            gapi.client.load("drive", "v2", function () {
+              GetAllPhotoGoogleApi(accessToken);
+            });
+          } else {
+            console.log("Error: " + authResult.error);
+          }
+        }
+      );
+    }
+
+    function GetAllPhotoGoogleApi(oauthToken) {
+      console.log(oauthToken);
+      gapi.client.setApiKey("AIzaSyDDz--unOxLYU_Mi2WtJToQ6yCOLKgEtd8");
+      gapi.client.setToken(oauthToken);
+      gapi.load("client", function () {
+        gapi.client.load("drive", "v3", function () {
+          // Get a list of files in a Google Drive folder
+          try {
+            gapi.client.drive.files
+              .list({
+                q: "mimeType='image/jpeg' and parents in '1qa5XfffNKvdD9ej8eqXbdQQkcFIebfxg'",
+              })
+              .then(function (response) {
+                // Get the list of files
+                console.log("RES == ",response);
+              })
+            //     var files = response.result.files;
+            //     // Loop through the files and display them on the page
+            //     for (var i = 0; i < files.length; i++) {
+            //       var file = files[i];
+            //       var img = document.createElement("img");
+            //       img.src = "https://drive.google.com/u/0/uc?id=" + file.id;
+            //       document.body.appendChild(img);
+            //     }
+            //   });
+          } catch (err) {
+            console.error("err == ", err);
+          }
+        });
+      });
+    }
+  </script> -->
+  <script>
+    $(document).ready(() => {
+      // fetch(
+      //   "https://script.google.com/macros/s/AKfycbxGRmd3lUf11AbeB_vOBev8RJTkM6sLC6pyDT76KTYs/dev",{mode:"no-cors"}
+      // )
+      //   .then((result) => result.json())
+      //   .then((res) => {
+      //     console.log(res);
+      //   }).catch((err)=>{
+      //     console.error("error ==> ",err)
+      //   });
+
+    //   var SCRIPT_URL =
+    //     "https://script.google.com/macros/s/AKfycbxGRmd3lUf11AbeB_vOBev8RJTkM6sLC6pyDT76KTYs/dev";
+    //   // $.getJSON(SCRIPT_URL , {},function (data) {
+    //   //   console.log(data);
+    //   // });
+    //   fetch(SCRIPT_URL, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "text/plain;charset=utf-8",
+    //     },
+    //   })
+    //     .then((response) => {
+    //       console.log("success:", response);
+    //     })
+    //     .catch((err) => {
+    //       console.log("Error:" + err);
+    //     });
+
+    // function GetAllPhotoGoogleApi(oauthToken) {
+    //   console.log(oauthToken);
+      gapi.client.setApiKey("AIzaSyDDz--unOxLYU_Mi2WtJToQ6yCOLKgEtd8");
+    //   gapi.client.setToken(oauthToken);
+      gapi.load("client", function () {
+        gapi.client.load("drive", "v3", function () {
+          // Get a list of files in a Google Drive folder
+          try {
+            gapi.client.drive.files
+              .list({
+                q: "mimeType='image/jpeg' and parents in '1qa5XfffNKvdD9ej8eqXbdQQkcFIebfxg'",
+              })
+              .then(function (response) {
+                // Get the list of files
+                console.log("RES == ",response);
+              })
+            //     var files = response.result.files;
+            //     // Loop through the files and display them on the page
+            //     for (var i = 0; i < files.length; i++) {
+            //       var file = files[i];
+            //       var img = document.createElement("img");
+            //       img.src = "https://drive.google.com/u/0/uc?id=" + file.id;
+            //       document.body.appendChild(img);
+            //     }
+            //   });
+          } catch (err) {
+            console.error("err == ", err);
+          }
+        });
+      });
+    // }
+    });
+
+    //drive code
+    //     var _ = LodashGS.load();
+    // async function doGet(e) {
+    //   return await loadDetails();
+    // }
+
+    // function loadDetails(){
+    //   var res = JSON.parse(UrlFetchApp.fetch(
+    //         "https://www.googleapis.com/drive/v3/files?q='1qa5XfffNKvdD9ej8eqXbdQQkcFIebfxg'%20in%20parents&key=AIzaSyDDz--unOxLYU_Mi2WtJToQ6yCOLKgEtd8&pageSize=1000"
+    //       ).getContentText());
+    //   return _.map(res.files, _.property('id'))
+    // }
+  </script>
 </html>
