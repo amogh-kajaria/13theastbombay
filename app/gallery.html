@@ -48,23 +48,22 @@
   <script>
     const FOLDER_ID = "1Nd726HAO5zMDBDRmcKmFEHIfKCn4zPkq";
     const API_KEY = "AIzaSyDQFjS6qyS8P39IWROCEf1Vf5h96_BuNgI";
-    const CHANNEL_ID="UCGzMdPUq7zXcp_KFKZa9MDg";
+    const CHANNEL_ID = "UCGzMdPUq7zXcp_KFKZa9MDg";
     $(document).ready(() => {
-      getDriveFilesInFolder(FOLDER_ID, API_KEY);
-      getVideos(
-        "1Nd726HAO5zMDBDRmcKmFEHIfKCn4zPkq",
-        "AIzaSyDQFjS6qyS8P39IWROCEf1Vf5h96_BuNgI"
-      );
+      getDriveFilesInFolder();
+      getVideos();
     });
 
-    async function getDriveFilesInFolder(folderId, apiKey) {
+    async function getDriveFilesInFolder() {
       try {
-        const response = await fetch(
-          `https://www.googleapis.com/drive/v3/files?q="${folderId}"+in+parents&key=${apiKey}`
-        );
-        const data = await response.json();
-        bindImages(data.files);
-        return data.files;
+        await fetch(
+          `https://www.googleapis.com/drive/v3/files?q="${FOLDER_ID}"+in+parents&key=${API_KEY}`
+        )
+          .then((res) => res.json())
+          .then((response) => {
+            const data = response;
+            bindImages(data.files);
+          })
       } catch (error) {
         console.error(error);
       }
@@ -79,6 +78,11 @@
       });
       // console.log(items);
       $("#my_nanogallery2_images").nanogallery2({
+        thumbnailLazyLoad: true,
+        thumbnailDisplayTransition: "scaleDown",
+        thumbnailHoverEffect2: "scale120",
+        thumbnailWidth: "auto",
+        thumbnailHeight: 250,
         items,
       });
     }
@@ -87,21 +91,31 @@
         `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&key=${API_KEY}`
       )
         .then((res) => res.json())
-        .then((response) => {
-          const data = response;
-          const videos = data.items;
-          let videoHtml = "";
-          const items = videos.map((element) => {
-            console.log(element);
-            return {
-              src: `https://www.youtube.com/watch?v=${element.id.videoId}`,
-              title: element.snippet.title,
-            };
-          });
-          $("#my_nanogallery2_videos").nanogallery2({
-            items,
-          });
-        });
+        .then(async (response) => {
+          bindVideos(response.items);
+        })
+    }
+
+    function bindVideos(videos) {
+      const items = videos.map((element) => {
+        console.log(element.snippet.thumbnails.default.url);
+        return {
+          src: `https://www.youtube.com/watch?v=${element.id.videoId}`,
+          title: element.snippet.title,
+        };
+      });
+      // console.log(items);
+      $("#my_nanogallery2_videos").nanogallery2({
+        thumbnailLazyLoad: true,
+        thumbnailDisplayTransition: "scaleDown",
+        thumbnailHoverEffect2: "scale120",
+        thumbnailWidth: "auto",
+        thumbnailHeight: 250,
+        items,
+      });
+      setTimeout(()=>{
+        $("#my_nanogallery2_videos").nanogallery2("resize");
+      },200)
     }
   </script>
 </html>
