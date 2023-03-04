@@ -1,121 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head id="includes">
-    <style></style>
-  </head>
 
-  <body>
-    <header></header>
-    <main class="container-xl">
-      <h1>Gallery</h1>
-      <div class="gallery1">
-        <div id="tsum-tabs">
-          <input id="tab1" type="radio" name="tabs" checked />
-          <label for="tab1">Images</label>
+<head id="includes">
+  <style></style>
+</head>
 
-          <input id="tab2" type="radio" name="tabs" />
-          <label for="tab2">Videos</label>
-
-          <section id="content1">
-            <div id="my_nanogallery2_images"></div>
-          </section>
-
-          <section id="content2">
-            <div id="my_nanogallery2_videos"></div>
-          </section>
+<body>
+  <header></header>
+  <main class="container-xl">
+    <h1>Gallery</h1>
+    <div class="gallery1">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-images-tab" data-toggle="pill" href="#pills-images" role="tab"
+            aria-controls="pills-images" aria-selected="true">Images</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-video-tab" data-toggle="pill" href="#pills-video" role="tab"
+            aria-controls="pills-video" aria-selected="false">Videos</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-images" role="tabpanel" aria-labelledby="pills-images-tab">
+          <div id="my_nanogallery2_images"></div>
+        </div>
+        <div class="tab-pane fade" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
+          <div id="my_nanogallery2_videos"></div>
         </div>
       </div>
-    </main>
-    <footer></footer>
-  </body>
-  <!-- Load the Google API Client Library for JavaScript -->
-  <script
-    src="https://apis.google.com/js/platform.js?onload=init"
-    async
-    defer
-  ></script>
-  <script
-    src="https://apis.google.com/js/client:plusone.js"
-    type="application/javascript"
-  ></script>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+<!-- Load the Google API Client Library for JavaScript -->
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+<script src="https://apis.google.com/js/client:plusone.js" type="application/javascript"></script>
 
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/popper.min.js"></script>
-  <script src="scripts/bootstrap.min.js"></script>
-  <script src="scripts/jquery.nanogallery2.min.js"></script>
-  <script src="scripts/script.js"></script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/popper.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/jquery.nanogallery2.min.js"></script>
+<script src="scripts/script.js"></script>
 
-  <script>
-    const FOLDER_ID = "1Nd726HAO5zMDBDRmcKmFEHIfKCn4zPkq";
-    const API_KEY = "AIzaSyDQFjS6qyS8P39IWROCEf1Vf5h96_BuNgI";
-    const CHANNEL_ID = "UCGzMdPUq7zXcp_KFKZa9MDg";
-    $(document).ready(() => {
-      getDriveFilesInFolder();
-      getVideos();
-    });
+<script>
+  const FOLDER_ID = "1Nd726HAO5zMDBDRmcKmFEHIfKCn4zPkq";
+  const API_KEY = "AIzaSyDQFjS6qyS8P39IWROCEf1Vf5h96_BuNgI";
+  const CHANNEL_ID = "UCGzMdPUq7zXcp_KFKZa9MDg";
+  $(document).ready(() => {
+    getDriveFilesInFolder();
+    getVideos();
+  });
 
-    async function getDriveFilesInFolder() {
-      try {
-        await fetch(
-          `https://www.googleapis.com/drive/v3/files?q="${FOLDER_ID}"+in+parents&key=${API_KEY}`
-        )
-          .then((res) => res.json())
-          .then((response) => {
-            const data = response;
-            bindImages(data.files);
-          })
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    function bindImages(images) {
-      const items = images.map((ele) => {
-        return {
-          src: "https://drive.google.com/u/0/uc?id=" + ele.id,
-          title: ele.name,
-        };
-      });
-      // console.log(items);
-      $("#my_nanogallery2_images").nanogallery2({
-        thumbnailLazyLoad: true,
-        thumbnailDisplayTransition: "scaleDown",
-        thumbnailHoverEffect2: "scale120",
-        thumbnailWidth: "auto",
-        thumbnailHeight: 250,
-        items,
-      });
-    }
-    async function getVideos() {
+  async function getDriveFilesInFolder() {
+    try {
       await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&key=${API_KEY}`
+        `https://www.googleapis.com/drive/v2/files?q="${FOLDER_ID}"+in+parents&key=${API_KEY}`
       )
         .then((res) => res.json())
-        .then(async (response) => {
-          bindVideos(response.items);
-        })
+        .then((response) =>
+          bindImages(response.items)
+        )
+    } catch (error) {
+      console.error(error);
     }
+  }
 
-    function bindVideos(videos) {
-      const items = videos.map((element) => {
-        console.log(element.snippet.thumbnails.default.url);
-        return {
-          src: `https://www.youtube.com/watch?v=${element.id.videoId}`,
-          title: element.snippet.title,
-        };
-      });
-      // console.log(items);
-      $("#my_nanogallery2_videos").nanogallery2({
-        thumbnailLazyLoad: true,
-        thumbnailDisplayTransition: "scaleDown",
-        thumbnailHoverEffect2: "scale120",
-        thumbnailWidth: "auto",
-        thumbnailHeight: 250,
-        items,
-      });
-      setTimeout(()=>{
-        $("#my_nanogallery2_videos").nanogallery2("resize");
-      },200)
-    }
-  </script>
+  function bindImages(images) {
+    const items = images.map((ele) => {
+      return {
+        src: ele.webContentLink,
+        title: ele.name,
+      };
+    });
+    $("#my_nanogallery2_images").nanogallery2({
+      thumbnailLazyLoad: true,
+      thumbnailDisplayTransition: "scaleDown",
+      thumbnailHoverEffect2: "scale120",
+      thumbnailWidth: "auto",
+      thumbnailHeight: 250,
+      items,
+    });
+  }
+  async function getVideos() {
+    await fetch(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&key=${API_KEY}`
+    )
+      .then((res) => res.json())
+      .then(async (response) => {
+        bindVideos(response.items);
+      })
+  }
+
+  function bindVideos(videos) {
+    const items = videos.map((element) => {
+      return {
+        src: `https://www.youtube.com/watch?v=${element.id.videoId}`,
+        title: element.snippet.title,
+      };
+    });
+    $("#my_nanogallery2_videos").nanogallery2({
+      thumbnailLazyLoad: true,
+      thumbnailDisplayTransition: "scaleDown",
+      thumbnailHoverEffect2: "scale120",
+      thumbnailWidth: "auto",
+      thumbnailHeight: 250,
+      items,
+    });
+  }
+  $('a.nav-link').on('shown.bs.tab', function (e) {
+    $("#my_nanogallery2_videos").nanogallery2("resize");
+    $("#my_nanogallery2_image").nanogallery2("resize");
+  })
+</script>
+
 </html>
